@@ -2,6 +2,6 @@
 %p= @submission.clue.description
 
 -if @submission.correct
-  %h2="Your guess of #{@submission.guess} is correct and earned you 5 points!"
+  %h2.alert.alert-success="Your guess of #{@submission.guess} is correct and earned you 5 points!"
 -else
-  %h2="Your guess of #{@submission.guess} is incorrect and lost you 2 points!"
+  %h2.alert.alert-danger="Your guess of #{@submission.guess} is incorrect and lost you 2 points!"

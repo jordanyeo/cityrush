@@ -14,7 +14,7 @@ class Submission < ActiveRecord::Base
       self.user.increment(:points, 5)
     else
       self.correct = false
-      self.user.decrement(:points, 1)
+      self.user.decrement(:points, 2)
     end
     self.save
     self.user.save

@@ -2,5 +2,8 @@
 %h2= @event.scheduled_at.to_s(:long)
 %p= @event.description
 
--@event.clues.each do |clue|
-  =link_to clue.name, clue
+%h3 Your available clues:
+%ul
+  -@event.clues.each do |clue|
+    %li
+      %h4= link_to clue.name, clue

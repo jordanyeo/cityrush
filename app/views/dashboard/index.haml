@@ -4,5 +4,7 @@
 
 %h3 Check out the following upcoming events:
 
--@events.each do |event|
-  %h4= link_to event.name, event
+%ul
+  -@events.each do |event|
+    %li
+      %h4= link_to event.name, event

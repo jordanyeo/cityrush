@@ -1,18 +1,14 @@
-%p#notice= notice
+%h1= "#{@clue.event.name} - #{@clue.name}"
 
 %p
-  %b Title:
-  = @clue.title
-%p
-  %b Description:
   = @clue.description
-%p
-  %b Answer:
-  = @clue.answer
-%p
-  %b Event:
-  = @clue.event_id
+  
+= simple_form_for(@submission) do |f|
+  = f.error_notification
+  = f.hidden_field :event_id, :value => @clue.event.id
+  = f.hidden_field :clue_id, :value => @clue.id
+  .form-inputs
+    = f.input :guess, :label => "Your Answer:"
 
-= link_to 'Edit', edit_clue_path(@clue)
-\|
-= link_to 'Back', clues_path
+  .form-actions
+    = f.button :submit

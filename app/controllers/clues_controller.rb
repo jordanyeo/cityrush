@@ -1,4 +1,5 @@
 class CluesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_clue, only: [:show, :edit, :update, :destroy]
 
   # GET /clues
@@ -10,6 +11,7 @@ class CluesController < ApplicationController
   # GET /clues/1
   # GET /clues/1.json
   def show
+    @submission = Submission.new
   end
 
   # GET /clues/new
@@ -69,6 +71,6 @@ class CluesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clue_params
-      params.require(:clue).permit(:title, :description, :answer, :event_id)
+      params.require(:clue).permit(:title, :description)
     end
 end

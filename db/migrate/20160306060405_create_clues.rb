@@ -1,7 +1,7 @@
 class CreateClues < ActiveRecord::Migration
   def change
     create_table :clues do |t|
-      t.string :title
+      t.string :name
       t.text :description
       t.string :answer
       t.integer :event_id

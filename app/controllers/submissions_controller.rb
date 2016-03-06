@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
 
   # GET /submissions
@@ -25,7 +26,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions.json
   def create
     @submission = Submission.new(submission_params)
-
+    @submission.user_id = current_user.id
     respond_to do |format|
       if @submission.save
         format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
@@ -69,6 +70,6 @@ class SubmissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-      params.require(:submission).permit(:guess, :event_id, :user_id, :clue_id, :correct)
+      params.require(:submission).permit(:guess, :event_id, :clue_id)
     end
 end

@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160306060549) do
 
   create_table "clues", force: :cascade do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.string   "answer"
     t.integer  "event_id"

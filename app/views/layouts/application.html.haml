@@ -12,6 +12,5 @@
       = render 'layouts/navigation'
     %main{:role => "main"}
       .container
-        .starter-template
-          = render 'layouts/messages'
-          = yield
+        = render 'layouts/messages'
+        = yield

@@ -3,5 +3,6 @@ class DashboardController < ApplicationController
   
   def index
     @events = Event.upcoming
+    @users = User.all
   end
 end

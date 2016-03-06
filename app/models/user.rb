@@ -6,7 +6,4 @@ class User < ActiveRecord::Base
 
   has_many :submissions
   
-  def points
-    self.submissions.count
-  end
 end

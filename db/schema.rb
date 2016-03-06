@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160306060549) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin"
+    t.integer  "points",                 default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token"

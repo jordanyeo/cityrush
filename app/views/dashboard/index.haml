@@ -8,3 +8,10 @@
   -@events.each do |event|
     %li
       %h4= link_to event.name, event
+
+%h3 Leaderboard:
+%ul
+  -@users.each do |user|
+    %li="#{user.name} (#{user.points} points)"
+        
+    

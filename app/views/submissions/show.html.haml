@@ -1,21 +1,7 @@
-%p#notice= notice
+%h1= "#{@submission.clue.event.name} - #{@submission.clue.name}"
+%p= @submission.clue.description
 
-%p
-  %b Guess:
-  = @submission.guess
-%p
-  %b Event:
-  = @submission.event_id
-%p
-  %b User:
-  = @submission.user_id
-%p
-  %b Clue:
-  = @submission.clue_id
-%p
-  %b Correct:
-  = @submission.correct
-
-= link_to 'Edit', edit_submission_path(@submission)
-\|
-= link_to 'Back', submissions_path
+-if @submission.correct
+  %h2="Your guess of #{@submission.guess} is correct and earned you 5 points!"
+-else
+  %h2="Your guess of #{@submission.guess} is inccorrect and lost you 2 points!"

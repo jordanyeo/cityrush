@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @clue.title
+%p
+  %b Description:
+  = @clue.description
+%p
+  %b Answer:
+  = @clue.answer
+%p
+  %b Event:
+  = @clue.event_id
+
+= link_to 'Edit', edit_clue_path(@clue)
+\|
+= link_to 'Back', clues_path

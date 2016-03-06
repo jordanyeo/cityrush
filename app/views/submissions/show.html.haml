@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Guess:
+  = @submission.guess
+%p
+  %b Event:
+  = @submission.event_id
+%p
+  %b User:
+  = @submission.user_id
+%p
+  %b Clue:
+  = @submission.clue_id
+%p
+  %b Correct:
+  = @submission.correct
+
+= link_to 'Edit', edit_submission_path(@submission)
+\|
+= link_to 'Back', submissions_path

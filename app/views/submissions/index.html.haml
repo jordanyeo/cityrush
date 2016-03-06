@@ -1,0 +1,29 @@
+%h1 Listing submissions
+
+%table
+  %thead
+    %tr
+      %th Guess
+      %th Event
+      %th User
+      %th Clue
+      %th Correct
+      %th
+      %th
+      %th
+
+  %tbody
+    - @submissions.each do |submission|
+      %tr
+        %td= submission.guess
+        %td= submission.event_id
+        %td= submission.user_id
+        %td= submission.clue_id
+        %td= submission.correct
+        %td= link_to 'Show', submission
+        %td= link_to 'Edit', edit_submission_path(submission)
+        %td= link_to 'Destroy', submission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Submission', new_submission_path

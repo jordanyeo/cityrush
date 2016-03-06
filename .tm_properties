@@ -1,0 +1,4 @@
+excludeInFolderSearch = "{$excludeInFolderSearch,tmp,log}"
+include = "{$include,.gitignore,.ebextensions}"
+exclude = "{$exclude,.tm_properties}"
+excludeInFileChooser= "{$exclude,$excludeInFolderSearch}"

@@ -1,0 +1,8 @@
+%h1="Hi there, #{current_user.name}!"
+
+%h2="You have #{current_user.points} points"
+
+%h3 Check out the following upcoming events:
+
+-@events.each do |event|
+  %h4= link_to event.name, event

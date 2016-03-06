@@ -3,6 +3,6 @@ class DashboardController < ApplicationController
   
   def index
     @events = Event.upcoming
-    @users = User.all.order(:points)
+    @users = User.all.order('points DESC')
   end
 end

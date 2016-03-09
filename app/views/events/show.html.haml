@@ -1,9 +1,18 @@
-%h1= @event.name
-%h2= @event.scheduled_at.to_s(:long)
-%p= @event.description
+-@page_title = "#{@event.name}"
+.row
+  .col-lg-12
+    .mt-element-ribbon.bg-grey-steel
+      .ribbon.ribbon-color-default.uppercase
+        =@event.scheduled_at.to_s(:long)
+      %p.ribbon-content
+        = @event.description
 
-%h3 Your available clues:
-%ul
-  -@event.clues.each do |clue|
-    %li
-      %h4= link_to clue.name, clue
+.mt-element-list
+  .mt-list-head.list-simple.font-white.bg-green
+    .list-head-title-container
+      %h4.list-title Your available clues:
+  .list-simple.mt-list-container
+    %ul
+      -@event.clues.each do |clue|
+        %li.mt-list-item
+          = link_to clue.name, clue

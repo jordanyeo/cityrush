@@ -1,7 +1,7 @@
-%h1= "#{@submission.clue.event.name} - #{@submission.clue.name}"
+-@page_title = "#{@submission.clue.event.name} - #{@submission.clue.name}"
 %p= @submission.clue.description
 
 -if @submission.correct
   %h2.alert.alert-success="Your guess of #{@submission.guess} is correct and earned you 5 points!"
 -else
-  %h2.alert.alert-danger="Your guess of #{@submission.guess} is incorrect and lost you 2 points!"
+  %h2.alert.alert-danger.center=raw"Your guess of #{@submission.guess} is incorrect and lost you 2 points!<br/>#{link_to "Try again?", @submission.clue}"

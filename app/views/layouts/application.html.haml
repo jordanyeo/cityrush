@@ -4,13 +4,86 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title= content_for?(:title) ? yield(:title) : 'Cityrush'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Cityrush'}"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-    %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
+  %body.page-container-bg-solid.page-boxed
+    .page-header
+      .page-header-top
+        .container
+          / BEGIN LOGO
+          .page-logo
+            %a{:href => root_url}
+              .logo-default
+                =image_tag('logo.png', :class => 'logo-default')
+          %a.menu-toggler{:href => "javascript:;"}
+          -if current_user            
+            .top-menu
+              %span.username.username-hide-mobile="Hi, #{current_user.name}!"
+              = link_to('Logout', destroy_user_session_path, :method => :delete)
+      .page-header-menu
+        .container
+          .hor-menu
+            %ul.nav.navbar-nav
+              %li
+                =link_to 'My Rushes', root_url
+              %li
+                =link_to 'My Profile', root_url
+    .page-container
+      .page-content-wrapper
+        .page-content
+          .container
+            .page-content-inner
+              .row
+                .col-md-8
+                  .portlet.light
+                    .portlet-title
+                      %h2=@page_title
+                    .portlet-body
+                      - flash.each do |name, msg|
+                        - if msg.is_a?(String)
+                          %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
+                            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+                            = content_tag :div, msg, :id => "flash_#{name}"
+                      = yield
+                .col-md-4
+                  .portlet.light
+                    .portlet-title
+                      %h2 Leaderboard
+                    .portlet-body
+                      %ul.leaderboard.list-group
+                        -@users.each do |user|
+                          -if user == current_user
+                            %li.list-group-item.active
+                              =user.name
+                              %span.badge.badge-default
+                                %strong
+                                  =user.points
+                          -else
+                            %li.list-group-item
+                              =user.name
+                              %span.badge.badge-default
+                                =user.points
+    .page-footer
       .container
-        = render 'layouts/messages'
-        = yield
+        2015 © CityRush
+    .scroll-to-top
+      %i.icon-arrow-up
+    /[if lt IE 9]
+      = javascript_include_tag "respond.min.js"
+      = javascript_include_tag "excanvas.min.js"
+    = javascript_include_tag "jquery.min.js"
+    = javascript_include_tag "bootstrap.min.js"
+    = javascript_include_tag "jquery.blockui.min.js"
+    = javascript_include_tag "jquery.uniform.min.js"
+    = javascript_include_tag "bootstrap-switch.min.js"
+    = javascript_include_tag "app.min.js"
+    = javascript_include_tag "layout.min.js"
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXXX-1', 'keenthemes.com');
+      ga('send', 'pageview');

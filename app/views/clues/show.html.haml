@@ -7,7 +7,25 @@
   = f.hidden_field :event_id, :value => @clue.event.id
   = f.hidden_field :clue_id, :value => @clue.id
   .form-inputs
-    = f.input :guess, :label => "Your Answer:"
+    = f.hidden_field :latitude
+    = f.hidden_field :longitude
 
   .form-actions
     = f.button :submit, "Submit"
+:javascript
+  $(function() {
+    function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(fillForm);
+      } else { 
+          alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function fillForm(position) {
+      $('#submission_latitude').val(position.coords.latitude);
+      $('#submission_longitude').val(position.coords.longitude);
+      console.log(position.coords.latitude);
+    }
+    getLocation();
+  });

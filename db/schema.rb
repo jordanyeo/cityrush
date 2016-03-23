@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 20160306060549) do
   create_table "clues", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "answer"
+    t.string   "latitude"
+    t.string   "longitude"
     t.integer  "event_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -31,11 +32,13 @@ ActiveRecord::Schema.define(version: 20160306060549) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string   "guess"
+    t.string   "latitude"
+    t.string   "longitude"
     t.integer  "event_id"
     t.integer  "user_id"
     t.integer  "clue_id"
     t.boolean  "correct"
+    t.string   "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

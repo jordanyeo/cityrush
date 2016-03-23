@@ -3,7 +3,8 @@ class CreateClues < ActiveRecord::Migration
     create_table :clues do |t|
       t.string :name
       t.text :description
-      t.string :answer
+      t.string :latitude
+      t.string :longitude
       t.integer :event_id
 
       t.timestamps null: false

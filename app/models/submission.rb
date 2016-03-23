@@ -3,20 +3,24 @@ class Submission < ActiveRecord::Base
   belongs_to :user
   belongs_to :clue
   
-  validates_presence_of :guess
-  after_create :update_user_points
+  validates_presence_of :latitude, :longitude
+  after_create :validate_checkin
   
   private
   
-  def update_user_points
-    if self.guess == self.clue.answer
+  def validate_checkin
+    Geokit::default_units = :kms
+    clue_latlong = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.clue.latitude},#{self.clue.longitude}"
+    submission_latlong = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.latitude},#{self.longitude}"
+    guess_distance = clue_latlong.distance_to(submission_latlong)
+    if guess_distance < 0.5
       self.correct = true
-      self.user.increment(:points, 5)
+      self.user.increment(:points, 10)
     else
-      self.correct = false
       self.user.decrement(:points, 2)
+      self.correct = false
+      self.distance = guess_distance
     end
     self.save
-    self.user.save
   end
 end

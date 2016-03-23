@@ -2,6 +2,6 @@
 %p= @submission.clue.description
 
 -if @submission.correct
-  %h2.alert.alert-success="Your guess of #{@submission.guess} is correct and earned you 5 points!"
+  %h2.alert.alert-success="You've checked in at the right spot and earned 10 points!'"
 -else
-  %h2.alert.alert-danger.center=raw"Your guess of #{@submission.guess} is incorrect and lost you 2 points!<br/>#{link_to "Try again?", @submission.clue}"
+  %h2.alert.alert-danger.center=raw"Your checkin is wrong, and you are #{@submission.distance} kilometers away... #{link_to "Try again?", @submission.clue}"

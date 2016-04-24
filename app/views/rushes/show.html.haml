@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rush.name
+%p
+  %b Scheduled at:
+  = @rush.scheduled_at
+
+= link_to 'Edit', edit_rush_path(@rush)
+\|
+= link_to 'Back', rushes_path

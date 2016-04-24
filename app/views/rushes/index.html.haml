@@ -1,0 +1,23 @@
+%h1 Listing rushes
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Scheduled at
+      %th
+      %th
+      %th
+
+  %tbody
+    - @rushes.each do |rush|
+      %tr
+        %td= rush.name
+        %td= rush.scheduled_at
+        %td= link_to 'Show', rush
+        %td= link_to 'Edit', edit_rush_path(rush)
+        %td= link_to 'Destroy', rush, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Rush', new_rush_path

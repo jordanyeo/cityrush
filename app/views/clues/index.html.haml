@@ -1,0 +1,27 @@
+%h1 Listing clues
+
+%table
+  %thead
+    %tr
+      %th Location
+      %th Description
+      %th Lat
+      %th Long
+      %th
+      %th
+      %th
+
+  %tbody
+    - @clues.each do |clue|
+      %tr
+        %td= clue.location_id
+        %td= clue.description
+        %td= clue.lat
+        %td= clue.long
+        %td= link_to 'Show', clue
+        %td= link_to 'Edit', edit_clue_path(clue)
+        %td= link_to 'Destroy', clue, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Clue', new_clue_path

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Location:
+  = @clue.location_id
+%p
+  %b Description:
+  = @clue.description
+%p
+  %b Lat:
+  = @clue.lat
+%p
+  %b Long:
+  = @clue.long
+
+= link_to 'Edit', edit_clue_path(@clue)
+\|
+= link_to 'Back', clues_path

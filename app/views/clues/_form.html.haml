@@ -1,0 +1,11 @@
+= simple_form_for(@clue) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :location_id
+    = f.input :description
+    = f.input :lat
+    = f.input :long
+
+  .form-actions
+    = f.button :submit

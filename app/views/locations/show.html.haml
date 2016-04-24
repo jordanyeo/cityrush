@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Rush:
+  = @location.rush_id
+%p
+  %b Name:
+  = @location.name
+%p
+  %b Description:
+  = @location.description
+%p
+  %b Lat:
+  = @location.lat
+%p
+  %b Long:
+  = @location.long
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path

@@ -64,7 +64,9 @@ class CluesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clue
-      @clue = Clue.find(params[:id])
+      #clue always belongs to a location
+      @location = Location.find(params[:location_id])
+      @clue = @location.clue
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

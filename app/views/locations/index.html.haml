@@ -20,10 +20,6 @@
         %td= location.description
         %td= location.lat
         %td= location.long
-        %td= link_to 'Show', location
-        %td= link_to 'Edit', edit_location_path(location)
-        %td= link_to 'Destroy', location, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Show', rush_location_path(location, location.rush)
 
-%br
 
-= link_to 'New Location', new_location_path

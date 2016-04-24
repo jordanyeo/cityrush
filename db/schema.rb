@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20160424163153) do
   create_table "clue_checkins", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "clue_id"
+    t.float    "lat"
+    t.float    "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160424163153) do
   create_table "location_checkins", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "location_id"
+    t.float    "lat"
+    t.float    "long"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -56,8 +60,11 @@ ActiveRecord::Schema.define(version: 20160424163153) do
   create_table "user_rushes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "rush_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "checked_in_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

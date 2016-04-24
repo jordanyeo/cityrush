@@ -1,8 +1,24 @@
 Rails.application.routes.draw do
-  resources :clues
-  resources :locations
-  resources :rushes
-  devise_for :users
+  
+  
+  
+  resources :rushes, :except => [:new, :edit, :delete] do
+    member do
+      post 'checkin'
+    end
+    resources :locations, :except => [:new, :edit, :delete] do
+      member do
+        post 'checkin'
+      end
+      resource :clue, :except => [:new, :edit, :delete] do
+        member do
+          post 'checkin'
+        end
+      end
+    end
+  end
+  
+  devise_for :users 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

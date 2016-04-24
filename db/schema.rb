@@ -11,34 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306060549) do
+ActiveRecord::Schema.define(version: 20160424163153) do
+
+  create_table "clue_checkins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "clue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clues", force: :cascade do |t|
-    t.string   "name"
+    t.integer  "location_id"
     t.text     "description"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.integer  "event_id"
+    t.float    "lat"
+    t.float    "long"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "location_checkins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "rush_id"
     t.string   "name"
-    t.datetime "scheduled_at"
     t.text     "description"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "rushes", force: :cascade do |t|
+    t.string   "name"
+    t.time     "scheduled_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  create_table "submissions", force: :cascade do |t|
-    t.string   "latitude"
-    t.string   "longitude"
-    t.integer  "event_id"
+  create_table "user_rushes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "clue_id"
-    t.boolean  "correct"
-    t.string   "distance"
+    t.integer  "rush_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

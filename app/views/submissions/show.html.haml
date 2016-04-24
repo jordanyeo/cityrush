@@ -1,7 +1,0 @@
--@page_title = "#{@submission.clue.event.name} - #{@submission.clue.name}"
-%p= @submission.clue.description
-
--if @submission.correct
-  %h2.alert.alert-success="You've checked in at the right spot and earned 10 points!'"
--else
-  %h2.alert.alert-danger.center=raw"Your checkin is wrong, and you are #{@submission.distance} kilometers away... #{link_to "Try again?", @submission.clue}"

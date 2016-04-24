@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :invitable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :submissions
+
   
 end

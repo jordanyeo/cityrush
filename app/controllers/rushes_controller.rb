@@ -1,4 +1,5 @@
 class RushesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_rush, only: [:show, :edit, :update, :destroy]
 
   # GET /rushes

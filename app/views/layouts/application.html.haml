@@ -53,7 +53,7 @@
                       %h2 Leaderboard
                     .portlet-body
                       %ul.leaderboard.list-group
-                        -@users.each do |user|
+                        -@cityrush_users.each do |user|
                           -if user == current_user
                             %li.list-group-item.active
                               =user.name

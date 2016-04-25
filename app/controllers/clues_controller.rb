@@ -1,4 +1,5 @@
 class CluesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_clue, only: [:show, :edit, :update, :destroy]
 
   # GET /clues

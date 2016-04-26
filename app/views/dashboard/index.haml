@@ -1,16 +1,33 @@
 -@page_title = "Dashboard"
-
-%h4 Latest CityRush News
-%p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-.mt-element-list
-  .mt-list-head.list-simple.font-white.bg-green
-    .list-head-title-container
-      %h4.list-title My Rushes:
-  .list-simple.mt-list-container
-    %ul
-      -@rushes.each do |rush|
-        %li.mt-list-item
+.row
+  .col-sm-8
+    .panel.panel-default
+      .panel-heading 
+        %span.title My Rushes:
+      .panel-body
+        -@rushes.each do |rush|
           = link_to rush.name, rush
-        
-    
+
+  .col-sm-4
+    .panel.panel-default
+      .panel-heading
+        %span.title Leaderboard
+      .panel-body
+        .list-group
+          -@cityrush_users.each do |user|
+            -if user == current_user
+              %a.list-group-item.active
+                %span.badge=user.points
+                =user.name
+            -else
+              %a.list-group-item
+                %span.badge=user.points
+                =user.name
+  
+    .panel.panel-default
+      .panel-heading
+        %span.title Latest CityRush News
+      .panel-body
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+

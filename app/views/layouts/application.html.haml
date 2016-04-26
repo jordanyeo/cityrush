@@ -1,89 +1,76 @@
 !!!
-%html
+%html{:lang => "en"}
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Cityrush'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Cityrush'}"}
-    %link{:href => "//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all", :rel => "stylesheet", :type => "text/css"}/
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-  %body.page-container-bg-solid.page-boxed
-    .page-header
-      .page-header-top
-        .container
-          / BEGIN LOGO
-          .page-logo
-            %a{:href => root_url}
-              .logo-default
-                =image_tag('logo.png', :class => 'logo-default')
-          %a.menu-toggler{:href => "javascript:;"}
-          -if current_user            
-            .top-menu
-              %span.username.username-hide-mobile="Hi, #{current_user.name}!"
-              = link_to('Logout', destroy_user_session_path, :method => :delete)
-      .page-header-menu
-        .container
-          .hor-menu
-            %ul.nav.navbar-nav
-              %li
-                =link_to 'My Rushes', root_url
-              %li
-                =link_to 'My Profile', root_url
-    .page-container
-      .page-content-wrapper
-        .page-content
-          .container
-            .page-content-inner
-              .row
-                .col-md-8
-                  .portlet.light
-                    .portlet-title
-                      %h2=@page_title
-                    .portlet-body
-                      - flash.each do |name, msg|
-                        - if msg.is_a?(String)
-                          %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
-                            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-                            = content_tag :div, msg, :id => "flash_#{name}"
-                      = yield
-                .col-md-4
-                  .portlet.light
-                    .portlet-title
-                      %h2 Leaderboard
-                    .portlet-body
-                      %ul.leaderboard.list-group
-                        -@cityrush_users.each do |user|
-                          -if user == current_user
-                            %li.list-group-item.active
-                              =user.name
-                              %span.badge.badge-default
-                                %strong
-                                  =user.points
-                          -else
-                            %li.list-group-item
-                              =user.name
-                              %span.badge.badge-default
-                                =user.points
-    .page-footer
-      .container
-        2015 © CityRush
-    .scroll-to-top
-      %i.icon-arrow-up
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %title CityRush
     /[if lt IE 9]
-      = javascript_include_tag "respond.min.js"
-      = javascript_include_tag "excanvas.min.js"
-    = javascript_include_tag "jquery.min.js"
-    = javascript_include_tag "bootstrap.min.js"
-    = javascript_include_tag "jquery.blockui.min.js"
-    = javascript_include_tag "jquery.uniform.min.js"
-    = javascript_include_tag "bootstrap-switch.min.js"
-    = javascript_include_tag "app.min.js"
-    = javascript_include_tag "layout.min.js"
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700,500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans:400,300,700,500' rel='stylesheet' type='text/css'>
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .am-wrapper
+      %nav.navbar.navbar-default.navbar-fixed-top.am-top-header
+        .container-fluid
+          .navbar-header
+            .page-title
+              %span CityRush
+            %a.am-toggle-left-sidebar.navbar-toggle.collapsed{:href => "#"}
+              %span.icon-bar
+                %span
+                %span
+                %span
+            %a.navbar-brand{:href => "index.html"}
+          %a.am-toggle-right-sidebar{:href => "#"}
+            %span.icon.pe-7s-menu2
+          %a.am-toggle-top-header-menu.collapsed{"data-target" => "#am-navbar-collapse", "data-toggle" => "collapse", :href => "#"}
+            %span.icon.pe-7s-angle-down
+          -if current_user
+            #am-navbar-collapse.collapse.navbar-collapse
+              %ul.nav.navbar-nav.navbar-right.am-user-nav
+                %li.dropdown
+                  %a.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    =image_tag('avatar.jpg')
+                    %span.user-name=current_user.name
+                    %span.angle-down.pe-7s-angle-down
+                  %ul.dropdown-menu{:role => "menu"}
+                    %li
+                      %a{:href => "#"}
+                        %span.icon.pe-7s-user>
+                        My profile
+                    %li
+                      = link_to('Logout', destroy_user_session_path)
+              
+      .am-left-sidebar
+        .content
+          .am-logo
+          %ul.sidebar-elements
+            %li.active
+              %a{:href => "#"}
+                %i.icon.pe-7s-monitor
+                %span Home
+          / Sidebar bottom content
+      .am-content
+        .page-head
+          %h2=@page_title
+        .main-content
+          - flash.each do |name, msg|
+            - if msg.is_a?(String)
+              %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
+                %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+                = content_tag :div, msg, :id => "flash_#{name}"
+          =yield
+    =javascript_include_tag "jquery.min.js"
+    =javascript_include_tag "jquery.nanoscroller.min.js"
+    =javascript_include_tag "main.js"
+    =javascript_include_tag "bootstrap.min.js"
     :javascript
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-XXXXXX-1', 'keenthemes.com');
-      ga('send', 'pageview');
+      $(document).ready(function(){
+      	//initialize the javascript
+      	App.init();
+      });

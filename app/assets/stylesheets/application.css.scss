@@ -1,29 +1,6 @@
 @charset "UTF-8";
 
-// base stylesheets for bootstrap and icon font
-@import 'vendor/fontawesome';
-@import 'vendor/lineicons';
-@import 'vendor/bootstrap';
-@import 'vendor/uniform';
-@import 'vendor/bootstrap_switch';
-@import 'vendor/components';
-@import 'vendor/plugins';
-@import 'vendor/layout';
-@import 'vendor/default';
-
-.logo-default {
-  height:60px;
-  margin-top:5px !important;
-}
-.portlet-title {
-  h2 {font-size:20px;margin-top:10px;font-weight:600;text-transform:uppercase;}
-}
-.leaderboard {
-  .active {font-weight:bold;}
-}
-
-.control-label .required, .form-group .required {color:#333 !important;}
-
-.center {text-align:center;}
-.alert a {color:#333;}
-.page-header {background:#F2F1E7;}
+@import "vendor/theme.css";
+@import "vendor/nanoscroller.css";
+@import "stroke-seven";
+.navbar-brand {background:image-url('logo-bug.png')}

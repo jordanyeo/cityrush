@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
   
   def leaderboard
-    @users = User.all.order('points DESC')
+    @cityrush_users = User.all.order('points DESC')
   end
 end

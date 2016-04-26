@@ -1,0 +1,10 @@
+
+-@rush.locations.each do |location|
+  %h2=location.name
+  %p=location.description
+  %h3 Coords:
+  %p="#{location.lat}, #{location.long}"
+  %h3 Clue:
+  %p=location.clue.description
+  %p="#{location.clue.lat}, #{location.clue.long}"
+  %hr

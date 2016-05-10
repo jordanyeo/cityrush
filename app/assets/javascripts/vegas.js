@@ -14,7 +14,7 @@ $(window).load(function() {
 
         $('body').vegas({
             slides: [
-                { src: '/assets/slide.jpg' },
+                { src: '/assets/slide-1-f9df2a11b384c8831b249e04e07b1ba24decc0498b0bb4bf0e791f35af7665fb.jpg' },
                 // { src: '/assets/slide-2.jpg' },
                 // { src: '/assets/slide-3.jpg' },
             ],

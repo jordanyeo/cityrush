@@ -9,4 +9,4 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( jquery.min.js jquery.nanoscroller.min.js bootstrap.min.js main.js)
+Rails.application.config.assets.precompile += %w( jquery.min.js jquery.nanoscroller.min.js bootstrap.min.js main.js marketing.css modernizr.custom.js classie.js dialogFx.js jquery.easings.min.js jquery.mousewheel.js notifyMe.js vegas.js velocity.min.js jquery.mCustomScrollbar.js)

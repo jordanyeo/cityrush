@@ -42,7 +42,7 @@ gem 'geokit'
 gem 'nested_scaffold'
 gem 'activeadmin', '~> 1.0.0.pre2'
 gem "stroke-seven-rails" #icons from template
-
+gem 'rails_real_favicon'
 
 
 group :development, :test do

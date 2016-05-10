@@ -4660,7 +4660,7 @@ table {
 }
 #loading #preloader span {
   position: absolute;
-  border: 8px solid #00c8aa;
+  border: 8px solid #7accbd;
   border-top: 8px solid transparent;
   border-radius: 999px;
 }
@@ -4680,6 +4680,7 @@ table {
   -webkit-animation: spin-2 1s infinite ease;
   -moz-animation: spin-2 1s infinite ease;
   animation: spin-2 1s infinite ease;
+  border-color:#f66d66;
 }
 
 @-webkit-keyframes spin-1 {

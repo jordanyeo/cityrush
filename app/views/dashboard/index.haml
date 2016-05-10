@@ -1,17 +1,18 @@
--@page_title = "Dashboard"
+-@page_title = "My Rushes"
 .row
   .col-sm-8
-    .panel.panel-default
-      .panel-heading 
-        %span.title My Rushes:
-      .panel-body
-        -@rushes.each do |rush|
-          = link_to rush.name, rush
-
+    -@rushes.each do |rush|
+      .panel.panel-dark
+        .panel-heading 
+          %span.title= rush.name
+        .panel-body
+          %h4=rush.scheduled_at.to_s(:long_ordinal)
+          %p=rush.description
+          =link_to "Let's go!", rush, :class => 'btn btn-primary btn-space'
   .col-sm-4
     .panel.panel-default
       .panel-heading
-        %span.title Leaderboard
+        %span.title All-time Leaderboard
       .panel-body
         .list-group
           -@cityrush_users.each do |user|

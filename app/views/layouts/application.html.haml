@@ -18,6 +18,8 @@
       %nav.navbar.navbar-default.navbar-fixed-top.am-top-header
         .container-fluid
           .navbar-header
+            .text-logo
+              =image_tag('logo-text-mono.png')
             .page-title
               %span CityRush
             %a.am-toggle-left-sidebar.navbar-toggle.collapsed{:href => "#"}
@@ -25,7 +27,7 @@
                 %span
                 %span
                 %span
-            %a.navbar-brand{:href => "index.html"}
+            %a.navbar-brand{:href => "/dashboard"}
           %a.am-toggle-right-sidebar{:href => "#"}
             %span.icon.pe-7s-menu2
           %a.am-toggle-top-header-menu.collapsed{"data-target" => "#am-navbar-collapse", "data-toggle" => "collapse", :href => "#"}
@@ -50,10 +52,15 @@
         .content
           .am-logo
           %ul.sidebar-elements
+            %li
+              %a{:href => "#"}
+                %i.icon.pe-7s-compass
+                %span Latest Clue
             %li.active
               %a{:href => "#"}
-                %i.icon.pe-7s-monitor
-                %span Home
+                %i.icon.pe-7s-map-2
+                %span My Rushes
+
           / Sidebar bottom content
       .am-content
         .page-head

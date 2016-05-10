@@ -4,3 +4,10 @@
 @import "vendor/nanoscroller.css";
 @import "stroke-seven";
 .navbar-brand {background:image-url('logo-bug.png')}
+.text-logo {
+  display:inline-block;
+  img {
+    margin-top:15px;
+    margin-left:15px;
+  }
+}

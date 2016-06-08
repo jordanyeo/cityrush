@@ -469,6 +469,11 @@ function locError(error) {
 
 // current position of the user
 function setCurrentPosition(pos) {
+  $('#location_checkin_lat').val(pos.coords.latitude);
+  $('#location_checkin_long').val(pos.coords.longitude);
+  
+  $('#checkin_submit').val('Check In!');
+  $('#checkin_submit').removeAttr('disabled');
     currentPositionMarker = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(
@@ -496,6 +501,7 @@ function displayAndWatch(position) {
 function watchCurrentPosition() {
     var positionTimer = navigator.geolocation.watchPosition(
         function (position) {
+            
             setMarkerPosition(
                 currentPositionMarker,
                 position
@@ -505,16 +511,17 @@ function watchCurrentPosition() {
 }
 
 function setMarkerPosition(marker, position) {
+  $('#location_checkin_lat').val(position.coords.latitude);
+  $('#location_checkin_long').val(position.coords.longitude);
+  
+  $('#checkin_submit').val('Check In!');
+  $('#checkin_submit').removeAttr('disabled');
   marker.setPosition(
       new google.maps.LatLng(
           position.coords.latitude,
           position.coords.longitude)
   );
-  $('#location_checkin_lat').val(pos.coords.latitude);
-  $('#location_checkin_long').val(pos.coords.longitude);
-  
-  $('#checkin_submit').val('Check In!');
-  $('#checkin_submit').removeAttr('disabled');
+
 }
 
 function initLocationProcedure() {

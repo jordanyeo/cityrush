@@ -481,11 +481,7 @@ function setCurrentPosition(pos) {
             pos.coords.latitude,
             pos.coords.longitude
         ));
-  $('#location_checkin_lat').val(pos.coords.latitude);
-  $('#location_checkin_long').val(pos.coords.longitude);
-  alert(pos.coords.accuracy);
-  $('#checkin_submit').val('Check In!');
-  $('#checkin_submit').removeAttr('disabled');
+
 }
 
 function displayAndWatch(position) {
@@ -514,7 +510,11 @@ function setMarkerPosition(marker, position) {
           position.coords.latitude,
           position.coords.longitude)
   );
-    
+  $('#location_checkin_lat').val(pos.coords.latitude);
+  $('#location_checkin_long').val(pos.coords.longitude);
+  
+  $('#checkin_submit').val('Check In!');
+  $('#checkin_submit').removeAttr('disabled');
 }
 
 function initLocationProcedure() {

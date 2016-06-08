@@ -1,12 +1,7 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @rush.name
-%p
-  %b Scheduled at:
-  = @rush.scheduled_at
-
--@rush.locations.each do |location|
-  =link_to location.name, rush_location_path(@rush, location)
-= link_to 'Back', rushes_path
+-@page_title = @rush.name
+.row
+  =@rush.description
+.row
+  .panel.panel-default
+    %h2 Your Next Location:
+    =link_to @rush.next_location(current_user).name, rush_location_path(@rush, @rush.next_location(current_user))

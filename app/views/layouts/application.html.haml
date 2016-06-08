@@ -11,14 +11,19 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700,500' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans:400,300,700,500' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyCLRoY1UtOLYBIdVU9p1DMihSeJNcTpnFg&language=en"></script>
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = javascript_include_tag "jquery.min.js"
+
+
+        
   %body
     .am-wrapper
       %nav.navbar.navbar-default.navbar-fixed-top.am-top-header
         .container-fluid
           .navbar-header
-            .text-logo
+            -# .text-logo
               =image_tag('logo-text-mono.png')
             .page-title
               %span CityRush
@@ -72,10 +77,11 @@
                 %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
                 = content_tag :div, msg, :id => "flash_#{name}"
           =yield
-    =javascript_include_tag "jquery.min.js"
+    
     =javascript_include_tag "jquery.nanoscroller.min.js"
     =javascript_include_tag "main.js"
     =javascript_include_tag "bootstrap.min.js"
+    =javascript_include_tag "velocity.min.js"
     :javascript
       $(document).ready(function(){
       	//initialize the javascript

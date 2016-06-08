@@ -5,4 +5,6 @@ class Location < ActiveRecord::Base
   has_many :users, :through => :location_checkins
   
   validates_presence_of :name, :description, :lat, :long, :rush_id
+  
+  scope :for_rush_order, -> (order) { where(:rush_order => order).first  }
 end

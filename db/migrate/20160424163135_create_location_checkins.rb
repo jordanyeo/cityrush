@@ -5,6 +5,8 @@ class CreateLocationCheckins < ActiveRecord::Migration
       t.integer :location_id
       t.float :lat
       t.float :long
+      t.boolean :correct
+      t.float :distance_from_correct
       t.timestamps null: false
     end
   end

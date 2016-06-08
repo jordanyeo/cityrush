@@ -1,9 +1,38 @@
-%p#notice= notice
+-@page_title = @location.name
+.row
+  .panel.panel-default
+    .panel-body
+      %p=@location.description
 
-%p
-  %b Name:
-  = @location.name
-%p
-  %b Description:
-  = @location.description
+-if @checkins
+  .row
+    .panel.panel-default
+      .panel-heading 
+        %span.title Your guesses:
+      .panel-body
+        -@checkins.each do |checkin|
+          %h3=checkin.created_at.to_s(:short)
+          -if checkin.correct
+            You got it! Congrats!
+          -else
+            You were
+            =checkin.distance_from_correct
+            kilometers away from the correct location. Try again!
+      
+.row
+  .panel.panel-default
+    .panel-heading
+      %span.title Check in:
+    .panel-body
+      #map_canvas{:style => 'height:250px;'}
+      =simple_form_for LocationCheckin.new, :url => {:action => "checkin"} do |f|
+        =f.input :lat
+        =f.input :long
+        =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit'
+:javascript
+  // initialize with a little help of jQuery
+  $(document).ready(function() {
+    initLocationProcedure();
+  });
 
+  

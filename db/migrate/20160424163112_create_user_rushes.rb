@@ -5,6 +5,7 @@ class CreateUserRushes < ActiveRecord::Migration
       t.integer :rush_id
       t.float :lat
       t.float :long
+      t.integer :active_location, :default => 1
       t.datetime :checked_in_at
       t.timestamps null: false
     end

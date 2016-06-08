@@ -51,12 +51,15 @@ ActiveRecord::Schema.define(version: 20160424210727) do
     t.integer  "location_id"
     t.float    "lat"
     t.float    "long"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "correct"
+    t.float    "distance_from_correct"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "locations", force: :cascade do |t|
     t.integer  "rush_id"
+    t.integer  "rush_order"
     t.string   "name"
     t.text     "description"
     t.float    "lat"
@@ -78,9 +81,10 @@ ActiveRecord::Schema.define(version: 20160424210727) do
     t.integer  "rush_id"
     t.float    "lat"
     t.float    "long"
+    t.integer  "active_location", default: 1
     t.datetime "checked_in_at"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|

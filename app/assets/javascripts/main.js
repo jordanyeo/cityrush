@@ -457,7 +457,7 @@ function initializeMap()
        zoom: 18,
        center: mapCenter,
        scrollwheel: false,
-       mapTypeId: google.maps.MapTypeId.ROADMAP
+       mapTypeId: google.maps.MapTypeId.HYBRID
      });
     
 }

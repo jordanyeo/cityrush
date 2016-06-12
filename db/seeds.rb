@@ -29,7 +29,7 @@
 @c = Clue.create(:description => "Stay on foot, head past the water and check in at the closest 'home' you can find, which should be close to a North Star or two.", :location_id => @l.id, :lat => 53.562265, :long => -113.451393)
 
 @l = Location.create(:name => 'Little Checkpoint', :rush_id => @r.id, :description => "You might expect to find Moose or Archie in this neighbourhood. Stop for a break if you need to, but check in near the chimney to get your next destination.", :lat => 53.542112, :long => -113.469467, :rush_order => 7)
-@c = Clue.create(:description => "Head west on foot and search for a purple Puff. If it was warm enough you may even get wet as you check in beneath his head.", :location_id => @l.id, :lat => 53.541548, -113.473119)
+@c = Clue.create(:description => "Head west on foot and search for a purple Puff. If it was warm enough you may even get wet as you check in beneath his head.", :location_id => @l.id, :lat => 53.541548, :long => -113.473119)
 
 @l = Location.create(:name => 'Finish Line', :rush_id => @r.id, :description => "You're on the home stretch! Head to one of the biggest white tents you know to check in at the finish line and enjoy a hard earned meal.", :lat => 53.542112, :long => -113.469467, :rush_order => 8)
 

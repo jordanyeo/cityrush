@@ -5,6 +5,8 @@ class CreateClueCheckins < ActiveRecord::Migration
       t.integer :clue_id
       t.float :lat
       t.float :long
+      t.boolean :correct
+      t.float :distance_from_correct
       t.timestamps null: false
     end
   end

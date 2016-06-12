@@ -1,6 +1,7 @@
 class CluesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_clue, only: [:show, :edit, :update, :destroy]
+  before_action :set_clue, only: [:show, :edit,:checkin, :update, :destroy]
+  
 
   # GET /clues
   # GET /clues.json
@@ -51,6 +52,20 @@ class CluesController < ApplicationController
       end
     end
   end
+  
+  def checkin
+    @checkin = ClueCheckin.new(clue_checkin_params)
+    @checkin.clue_id = @location.clue.id
+    @checkin.user_id = current_user.id
+    @checkin.save
+  
+    @checkin.check_submission
+    if @checkin.correct
+      redirect_to rush_location_path(@rush, @rush.next_location(current_user))
+    else
+      redirect_to rush_location_clue_path(@rush, @location)
+    end
+  end
 
   # DELETE /clues/1
   # DELETE /clues/1.json
@@ -65,6 +80,7 @@ class CluesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clue
+      @rush = Rush.find(params[:rush_id])
       #clue always belongs to a location
       @location = Location.find(params[:location_id])
       @clue = @location.clue
@@ -72,6 +88,10 @@ class CluesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clue_params
-      params.require(:clue).permit(:location_id, :description, :lat, :long)
+      params.require(:clue).permit(:location_id, :lat, :long)
+    end
+    
+    def clue_checkin_params
+      params.require(:clue_checkin).permit(:lat, :long)
     end
 end

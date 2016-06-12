@@ -469,8 +469,8 @@ function locError(error) {
 
 // current position of the user
 function setCurrentPosition(pos) {
-  $('#location_checkin_lat').val(pos.coords.latitude);
-  $('#location_checkin_long').val(pos.coords.longitude);
+  $('.lat_field').val(pos.coords.latitude);
+  $('.long_field').val(pos.coords.longitude);
   
   $('#checkin_submit').val('Check In!');
   $('#checkin_submit').removeAttr('disabled');
@@ -511,8 +511,9 @@ function watchCurrentPosition() {
 }
 
 function setMarkerPosition(marker, position) {
-  $('#location_checkin_lat').val(position.coords.latitude);
-  $('#location_checkin_long').val(position.coords.longitude);
+  $('.lat_field').val(position.coords.latitude);
+  $('.long_field').val(position.coords.longitude);
+  
   
   $('#checkin_submit').val('Check In!');
   $('#checkin_submit').removeAttr('disabled');

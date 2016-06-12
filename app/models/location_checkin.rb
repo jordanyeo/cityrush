@@ -20,5 +20,6 @@ class LocationCheckin < ActiveRecord::Base
       self.distance_from_correct = guess_distance
     end
     self.save
+    self.user.save
   end
 end

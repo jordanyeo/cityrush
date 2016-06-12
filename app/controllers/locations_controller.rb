@@ -75,8 +75,11 @@ class LocationsController < ApplicationController
     @checkin.save
   
     @checkin.check_submission
-    
-    redirect_to rush_location_path(@rush, @location)
+    if @checkin.correct
+      redirect_to rush_location_clue_path(@rush, @location)
+    else
+      redirect_to rush_location_path(@rush, @location)
+    end
   end
 
   private

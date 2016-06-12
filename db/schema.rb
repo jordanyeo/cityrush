@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20160424210727) do
     t.integer  "clue_id"
     t.float    "lat"
     t.float    "long"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "correct"
+    t.float    "distance_from_correct"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "clues", force: :cascade do |t|

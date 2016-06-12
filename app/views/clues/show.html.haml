@@ -1,15 +1,38 @@
-%p#notice= notice
+-@page_title = @location.name
+.row
+  .panel.panel-default
+    .panel-body
+      %p=@clue.description
 
-%p
-  %b Location:
-  = @clue.location_id
-%p
-  %b Description:
-  = @clue.description
-%p
-  %b Lat:
-  = @clue.lat
-%p
-  %b Long:
-  = @clue.long
+-if @checkins
+  .row
+    .panel.panel-default
+      .panel-heading 
+        %span.title Your guesses:
+      .panel-body
+        -@checkins.each do |checkin|
+          %h3=checkin.created_at.to_s(:short)
+          -if checkin.correct
+            You got it! Congrats!
+          -else
+            You were
+            =checkin.distance_from_correct
+            kilometers away from the correct location. Try again!
+      
+.row
+  .panel.panel-default
+    .panel-heading
+      %span.title Check in:
+    .panel-body
+      #map_canvas{:style => 'height:250px;'}
+      =simple_form_for ClueCheckin.new, :url => {:action => "checkin"} do |f|
+        =f.input :lat, :input_html => {:class => 'lat_field'}
+        =f.input :long, :input_html => {:class => 'long_field'}
+        =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit'
+:javascript
+  // initialize with a little help of jQuery
+  $(document).ready(function() {
+    initLocationProcedure();
+  });
 
+  

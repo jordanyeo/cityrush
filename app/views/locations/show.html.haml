@@ -26,8 +26,8 @@
     .panel-body
       #map_canvas{:style => 'height:250px;'}
       =simple_form_for LocationCheckin.new, :url => {:action => "checkin"} do |f|
-        =f.input :lat
-        =f.input :long
+        =f.input :lat, :input_html => {:class => 'lat_field'}
+        =f.input :long, :input_html => {:class => 'long_field'}
         =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit'
 :javascript
   // initialize with a little help of jQuery

@@ -11,7 +11,7 @@ class LocationCheckin < ActiveRecord::Base
     answer = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.location.lat},#{self.location.long}"
     submission = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.lat},#{self.long}"
     guess_distance = answer.distance_to(submission)
-    if guess_distance < 0.5
+    if guess_distance < 0.05
       self.correct = true
       self.user.increment(:points, 10)
     else

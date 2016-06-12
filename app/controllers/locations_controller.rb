@@ -14,6 +14,7 @@ class LocationsController < ApplicationController
   def show
     if (current_user.rushes.pluck(:id).include? params[:rush_id].to_i) && (@location.rush_order <= @rush.user_rush(current_user).active_location)
       @checkins = @location.location_checkins.for_user(current_user)
+      @checkin = LocationCheckin.new
     else
       redirect_to dashboard_url
     end

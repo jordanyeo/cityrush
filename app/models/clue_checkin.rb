@@ -11,7 +11,7 @@ class ClueCheckin < ActiveRecord::Base
     answer = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.clue.lat},#{self.clue.long}"
     submission = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.lat},#{self.long}"
     guess_distance = answer.distance_to(submission)
-    if guess_distance < 0.5
+    if guess_distance < 0.05
       self.correct = true
       self.user.increment(:points, 10)
       rush_locations = self.clue.location.rush.locations.by_rush_order.pluck(:id) #get array of all location ids for a rush, in rush order

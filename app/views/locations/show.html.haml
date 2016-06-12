@@ -4,31 +4,31 @@
     .panel-body
       %p=@location.description
 
--if @checkins
+-if @checkins.count > 0
   .row
     .panel.panel-default
       .panel-heading 
-        %span.title Your guesses:
+        %span.title="You've made #{pluralize @checkins.count, 'guess'}:"
       .panel-body
         -@checkins.each do |checkin|
-          %h3=checkin.created_at.to_s(:short)
+          %h4=checkin.created_at.strftime('%l:%M:%S %p')
           -if checkin.correct
             You got it! Congrats!
           -else
             You were
-            =checkin.distance_from_correct
+            =number_to_human(checkin.distance_from_correct)
             kilometers away from the correct location. Try again!
       
 .row
   .panel.panel-default
     .panel-heading
-      %span.title Check in:
+      %span.title Your Current Location
     .panel-body
-      #map_canvas{:style => 'height:250px;'}
-      =simple_form_for LocationCheckin.new, :url => {:action => "checkin"} do |f|
-        =f.input :lat, :input_html => {:class => 'lat_field'}
-        =f.input :long, :input_html => {:class => 'long_field'}
-        =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit'
+      #map_canvas{:style => 'height:350px;'}
+      =simple_form_for @checkin, :url => {:action => "checkin"} do |f|
+        =f.input :lat, :as => :hidden, :input_html => {:class => 'lat_field'}
+        =f.input :long, :as => :hidden, :input_html => {:class => 'long_field'}
+        =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit', :class => 'btn btn-primary btn-space btn-lg'
 :javascript
   // initialize with a little help of jQuery
   $(document).ready(function() {

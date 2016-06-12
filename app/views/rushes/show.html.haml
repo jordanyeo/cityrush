@@ -1,7 +1,11 @@
 -@page_title = @rush.name
 .row
-  =@rush.description
+  .panel.panel-dark
+    .panel-body
+      =@rush.description
 .row
   .panel.panel-default
-    %h2 Your Next Location:
-    =link_to @rush.next_location(current_user).name, rush_location_path(@rush, @rush.next_location(current_user))
+    .panel-heading
+      %span.title Your Next Location:
+    .panel-body
+      =link_to @rush.next_location(current_user).name, rush_location_path(@rush, @rush.next_location(current_user)), :class => 'btn btn-primary btn-space btn-lg'

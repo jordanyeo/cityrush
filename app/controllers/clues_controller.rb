@@ -12,6 +12,7 @@ class CluesController < ApplicationController
   # GET /clues/1
   # GET /clues/1.json
   def show
+    @checkin = LocationCheckin.new
   end
 
   # GET /clues/new

@@ -24,11 +24,11 @@
     .panel-heading
       %span.title Your Current Location
     .panel-body
-      #map_canvas{:style => 'height:350px;'}
       =simple_form_for @checkin, :url => {:action => "checkin"} do |f|
         =f.input :lat, :as => :hidden, :input_html => {:class => 'lat_field'}
         =f.input :long, :as => :hidden, :input_html => {:class => 'long_field'}
         =f.submit "Retrieving Location...", :disabled => true, :id => 'checkin_submit', :class => 'btn btn-primary btn-space btn-lg'
+    #map_canvas{:style => 'height:350px;'}
 :javascript
   // initialize with a little help of jQuery
   $(document).ready(function() {

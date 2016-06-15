@@ -10,6 +10,7 @@
 @r = Rush.create(:name => 'Beta Launch', :scheduled_at => Time.now, :description => 'Instructions on how to get started go here. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 @u.rushes << @r
 @u2 = User.create(:name => 'Jason Yeo', :email => 'jasonyeo@me.com', :password => 'jasonjason', :password_confirmation => 'jasonjason', :admin => 'true')
+@u2.rushes << @r
 @l = Location.create(:name => 'The Starting Line', :rush_id => @r.id, :description => "You're about to embark on the first ever City Rush! Check in at the starting location to get your first clue and begin the race! Your time is tracked at each checkpoint as you rush to solve the task. Good luck!", :lat => 53.412128, :long => -113.49777, :rush_order => 1)
 @c = Clue.create(:description => "Head to the southern-most table you can find on the ring to get your first destination!", :location_id => @l.id, :lat => 53.410505, :long => -113.498822)
 

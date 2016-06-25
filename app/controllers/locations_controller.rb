@@ -12,9 +12,17 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
-    if (current_user.rushes.pluck(:id).include? params[:rush_id].to_i) && (@location.rush_order <= @rush.user_rush(current_user).active_location)
+    if (current_user.rushes.pluck(:id).include? params[:rush_id].to_i) && (@location.rush_order <= @rush.user_rush(current_user).active_location)      
       @checkins = @location.location_checkins.for_user(current_user)
-      @checkin = LocationCheckin.new
+      if @checkins.length > 0  && @checkins.last.correct
+        if @location.clue
+          redirect_to rush_location_clue_path(@rush, @location)
+        else
+          redirect_to dashboard_path
+        end
+      else
+        @checkin = LocationCheckin.new
+      end
     else
       redirect_to dashboard_url
     end
@@ -77,7 +85,12 @@ class LocationsController < ApplicationController
   
     @checkin.check_submission
     if @checkin.correct
-      redirect_to rush_location_clue_path(@rush, @location)
+      if @location.clue
+        redirect_to rush_location_clue_path(@rush, @location)
+      else
+        @rush.user_rush(current_user).update_attribute(:complete, true)
+        redirect_to dashboard_path
+      end
     else
       redirect_to rush_location_path(@rush, @location)
     end

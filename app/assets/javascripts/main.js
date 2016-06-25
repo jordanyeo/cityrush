@@ -472,9 +472,10 @@ function locError(error) {
 function setCurrentPosition(pos) {
   $('.lat_field').val(pos.coords.latitude);
   $('.long_field').val(pos.coords.longitude);
-  
-  $('#checkin_submit').val('Check In!');
-  $('#checkin_submit').removeAttr('disabled');
+  if (pos.coords.accuracy <= 5) {
+    $('#checkin_submit').val('Check In!');
+    $('#checkin_submit').removeAttr('disabled');
+  }
     currentPositionMarker = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(
@@ -515,9 +516,11 @@ function setMarkerPosition(marker, position) {
   $('.lat_field').val(position.coords.latitude);
   $('.long_field').val(position.coords.longitude);
   
-  
-  $('#checkin_submit').val('Check In!');
-  $('#checkin_submit').removeAttr('disabled');
+  if (position.coords.accuracy <= 5) {
+    $('#checkin_submit').val('Check In!');
+    $('#checkin_submit').removeAttr('disabled');
+  }
+
   marker.setPosition(
       new google.maps.LatLng(
           position.coords.latitude,

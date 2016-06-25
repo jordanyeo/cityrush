@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160424210727) do
     t.float    "long"
     t.integer  "active_location", default: 1
     t.datetime "checked_in_at"
+    t.boolean  "complete"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end

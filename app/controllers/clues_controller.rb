@@ -12,7 +12,12 @@ class CluesController < ApplicationController
   # GET /clues/1
   # GET /clues/1.json
   def show
-    @checkin = LocationCheckin.new
+    if (current_user.rushes.pluck(:id).include? params[:rush_id].to_i) && (@location.rush_order <= @rush.user_rush(current_user).active_location)
+      @checkins = @location.clue.clue_checkins.for_user(current_user)
+      @checkin = ClueCheckin.new
+    else
+      redirect_to dashboard_url
+    end
   end
 
   # GET /clues/new
